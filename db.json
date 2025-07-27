@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "cpf": "123.456.789-00",
+      "email": "jose@example.com",
+      "name": "José Soares",
+      "password": "senha123",
+      "amount": 150000.00
+    },
+    {
+      "id": 2,
+      "cpf": "987.654.321-00",
+      "email": "rafa@example.com",
+      "name": "Rafael Aragão",
+      "password": "senha123",
+      "amount": 3000.00
+    },
+    {
+      "id": 3,
+      "cpf": "111.222.333-44",
+      "email": "daniel@example.com",
+      "name": "Daniel Caldas",
+      "password": "senha123",
+      "amount": 4000.00
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "senderId": 1,
+      "receiverId": 2,
+      "value": 200.00
+    },
+    {
+      "id": 2,
+      "senderId": 2,
+      "receiverId": 3,
+      "value": 150.00
+    },
+    {
+      "id": 3,
+      "senderId": 3,
+      "receiverId": 1,
+      "value": 50.00
+    }
+  ]
+}

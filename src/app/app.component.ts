@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserService } from './shared/services/user.service';
+import { TransactionService } from './shared/services/transaction.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,15 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  constructor(private userService: UserService, private transactionService: TransactionService) { }
+
+  ngOnInit(): void {
+    this.userService.getUsers().subscribe(users => {
+      console.log('Usuários:', users);
+    });
+
+    this.transactionService.getTransactions().subscribe(transactions => {
+      console.log('Transações:', transactions);
+    });
+  }
 }
