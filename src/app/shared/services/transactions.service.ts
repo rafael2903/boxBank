@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Transaction } from '../models/transaction.model';
+import { CreateTransactionDto } from '../types/create-transaction.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,12 @@ export class TransactionsService {
     return this.http.get<Transaction[]>(this.API_URL);
   }
 
-  getById(id: number): Observable<Transaction> {
+  getById(id: string): Observable<Transaction> {
     return this.http.get<Transaction>(`${this.API_URL}/${id}`);
   }
 
-  add(transaction: Transaction): Observable<Transaction> {
-    return this.http.post<Transaction>(this.API_URL, transaction);
+  create(transactionDto: CreateTransactionDto): Observable<Transaction> {
+    return this.http.post<Transaction>(this.API_URL, transactionDto);
   }
 
   update(transaction: Transaction): Observable<Transaction> {
@@ -31,7 +32,7 @@ export class TransactionsService {
     );
   }
 
-  remove(id: number): Observable<void> {
+  delete(id: string): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/${id}`);
   }
 }
