@@ -8,6 +8,8 @@
 }
 
 :root {
+  color: #333333;
+
   @include mat.theme(
     (
       color: mat.$azure-palette,
@@ -22,3 +24,4 @@ body,
 main {
   height: 100%;
 }
+

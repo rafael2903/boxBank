@@ -1,1 +1,66 @@
-<p>transfer works!</p>
+<div class="container">
+  <h1>Realizar Transferência</h1>
+  <mat-stepper labelPosition="bottom" linear #stepper [orientation]="(stepperOrientation | async)!">
+
+    <mat-step [stepControl]="transferDataForm" state="data">
+      <div class="step">
+        <h2>Dados da Transferência</h2>
+        <form [formGroup]="transferDataForm" class="transfer-form">
+          <div class="transfer-form-fields">
+            <mat-form-field>
+              <mat-label>CPF do destinatário</mat-label>
+              <input autofocus matInput placeholder="Digite o CPF" formControlName="senderId" required
+                inputmode="numeric" pattern="[0-9]*" />
+              <mat-error *ngIf="transferDataForm.get('senderId')?.hasError('required')">Informe o CPF</mat-error>
+              <mat-error *ngIf="transferDataForm.get('senderId')?.hasError('pattern')">CPF inválido</mat-error>
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always">
+              <mat-label>Valor</mat-label>
+              <input matInput type="number" placeholder="0" formControlName="amount" required />
+              <span matTextPrefix>R$&nbsp;</span>
+              <span matTextSuffix>.00</span>
+              <mat-error *ngIf="transferDataForm.get('amount')?.hasError('min')">Valor mínimo para transferência é R$
+                1,00</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="actions">
+            <button type="button" mat-button (click)="goHome()">Cancelar</button>
+            <button type="submit" mat-flat-button matStepperNext>Avançar</button>
+          </div>
+        </form>
+      </div>
+    </mat-step>
+
+    <mat-step state="review">
+      <div class="step">
+        <h2>Revisar Transferência</h2>
+        <div class="actions">
+          <button mat-button matStepperPrevious>Voltar</button>
+          <button mat-flat-button matStepperNext>Transferir</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step state="success">
+      <div class="step">
+        <h2>Transferência realizada com sucesso!</h2>
+        <div class="actions">
+          <button mat-button (click)="stepper.reset()">Realizar outra transferência</button>
+          <button mat-flat-button (click)="goHome()">Ir para página inicial</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <ng-template matStepperIcon="data">
+      <mat-icon>person</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="review">
+      <mat-icon>checklist</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="success">
+      <mat-icon>price_check</mat-icon>
+    </ng-template>
+  </mat-stepper>
+</div>
