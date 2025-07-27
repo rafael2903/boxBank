@@ -37,6 +37,6 @@ export class TransferComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/dashboard']);
   }
 }

@@ -22,5 +22,14 @@ export class DashboardComponent {
   toggleOcultarSaldo() {
     this.ocultarSaldo = !this.ocultarSaldo;
   }
+  verExtrato() {
+    console.log('Ver extrato');
+    this.router.navigate(['/extrato']);
+  }
+
+  transferir() {
+    console.log('Transferir');
+    this.router.navigate(['/transfer']);
+  }
 }
 

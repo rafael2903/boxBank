@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatInputModule,
     AsyncPipe,
     MatIconModule,
+    MatCardModule
   ],
   providers: [
     {

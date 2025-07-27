@@ -1,23 +1,27 @@
 <div class="container">
-  <h2>Bem-vindo, {{ nome }}!</h2>
-  
-  <p>Agência: {{ agencia }}</p>
-  <p>Conta: {{ conta }}</p>
-  
+  <mat-card>
+    <mat-card-content>
+      <h2>Bem-vindo, {{ nome }}!</h2>
+
+      <p>Agência: {{ agencia }}</p>
+      <p>Conta: {{ conta }}</p>
+
+      <div class="amount">
+        <h3>
+          Saldo: 
+          <span *ngIf="!ocultarSaldo">R$ {{ saldo }}</span>
+          <span *ngIf="ocultarSaldo">••••••</span>         
+        </h3>
+        <button mat-icon-button color="primary" (click)="toggleOcultarSaldo()">
+          <mat-icon>{{ ocultarSaldo ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+      </div>
+
+
+    </mat-card-content>
+  </mat-card>
   <div>
-    <p>
-      Saldo: 
-      <span *ngIf="!ocultarSaldo">R$ {{ saldo | number:'1.2-2' }}</span>
-      <span *ngIf="ocultarSaldo">••••••</span>
-      <button (click)="toggleOcultarSaldo()">
-        {{ ocultarSaldo ? 'Mostrar' : 'Ocultar' }}
-      </button>
-    </p>
-  </div>
-  
-  <div>
-    <button type="button" mat-button routerLink="/extrato">Ver Extrato</button>
-    <button type="button" routerLink="/transfer">Transferir</button>
+    <button type="button" mat-flat-button color="primary" (click)="verExtrato()">Ver Extrato</button>
+    <button type="button" mat-flat-button color="accent" (click)="transferir()">Transferir</button>
   </div>
 </div>
-
