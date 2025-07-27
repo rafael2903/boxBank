@@ -1,1 +1,23 @@
-<p>dashboard works!</p>
+<div class="container">
+  <h2>Bem-vindo, {{ nome }}!</h2>
+  
+  <p>Agência: {{ agencia }}</p>
+  <p>Conta: {{ conta }}</p>
+  
+  <div>
+    <p>
+      Saldo: 
+      <span *ngIf="!ocultarSaldo">R$ {{ saldo | number:'1.2-2' }}</span>
+      <span *ngIf="ocultarSaldo">••••••</span>
+      <button (click)="toggleOcultarSaldo()">
+        {{ ocultarSaldo ? 'Mostrar' : 'Ocultar' }}
+      </button>
+    </p>
+  </div>
+  
+  <div>
+    <button type="button" mat-button routerLink="/extrato">Ver Extrato</button>
+    <button type="button" routerLink="/transfer">Transferir</button>
+  </div>
+</div>
+
