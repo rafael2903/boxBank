@@ -12,11 +12,11 @@ export class AppComponent {
   constructor(private userService: UserService, private transactionService: TransactionService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(users => {
+    this.userService.getAll().subscribe(users => {
       console.log('Usuários:', users);
     });
 
-    this.transactionService.getTransactions().subscribe(transactions => {
+    this.transactionService.getAll().subscribe(transactions => {
       console.log('Transações:', transactions);
     });
   }
