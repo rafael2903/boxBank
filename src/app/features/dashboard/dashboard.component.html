@@ -3,8 +3,10 @@
     <mat-card-content>
       <h2>Bem-vindo, {{ nome }}!</h2>
 
-      <p>Agência: {{ agencia }}</p>
-      <p>Conta: {{ conta }}</p>
+      <div>
+        <p>Agência: {{ agencia }}</p>
+        <p>Conta: {{ conta }}</p>
+      </div>
 
       <div class="amount">
         <h3>
@@ -16,12 +18,60 @@
           <mat-icon>{{ ocultarSaldo ? 'visibility' : 'visibility_off' }}</mat-icon>
         </button>
       </div>
-
-
     </mat-card-content>
   </mat-card>
-  <div>
-    <button type="button" mat-flat-button color="primary" (click)="verExtrato()">Ver Extrato</button>
-    <button type="button" mat-flat-button color="accent" (click)="transferir()">Transferir</button>
+  <div >
+    <button 
+      [ngStyle]="{ 'margin-right': '6px' }"
+      type="button" 
+      mat-flat-button color="primary" 
+      (click)="verExtrato()">
+      <mat-icon>receipt_long</mat-icon>
+      Extrato
+    </button>
+    <button 
+      [ngStyle]="{ 'margin-left': '6px' }"
+      type="button" 
+      mat-flat-button color="accent" 
+      (click)="transferir()">
+      <mat-icon>sync_alt</mat-icon>
+      Transferir
+    </button>
+  </div>
+  <div class="acoes-bancarias">
+    <button mat-button>
+      <mat-icon>currency_exchange</mat-icon>
+      Pix
+    </button>
+
+    <button mat-button>
+      <mat-icon>payments</mat-icon>
+      Pagamentos
+    </button>
+  
+    <button mat-button>
+      <mat-icon>credit_card</mat-icon>
+      Cartão
+    </button>
+  
+    <button mat-button>
+      <mat-icon>savings</mat-icon>
+      Cofrinho
+    </button>
+  
+    <button mat-button>
+      <mat-icon>account_balance</mat-icon>
+      Empréstimo
+    </button>
+  
+    <button mat-button>
+      <mat-icon>trending_up</mat-icon>
+      Investimentos
+    </button>
+  
+    <button mat-button>
+      <mat-icon>help_outline</mat-icon>
+      Ajuda
+    </button>
   </div>
 </div>

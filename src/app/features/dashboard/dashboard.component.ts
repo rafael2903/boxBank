@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
   nome: string = 'João';
-  agencia: string = '1234';
+  agencia: string = '0001';
   conta: string = '56789-0';
   saldo: number = 12345.67;
   ocultarSaldo: boolean = false;

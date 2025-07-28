@@ -1,6 +1,7 @@
 .container {
   display: flex;
   padding: 32px;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -18,10 +19,6 @@ p {
   font-size: 18px;
 }
 
-button {
-  margin: 8px;
-}
-
 div:last-child {
   display: flex;
   gap: 16px;
@@ -33,4 +30,22 @@ div:last-child {
   display: flex;
   align-items: center;
   width: 300px
+}
+
+.acoes-bancarias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 32px;
+
+  button {
+    border-radius: 8px;
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  mat-icon {
+    color: #3f51b5;
+  }
 }
