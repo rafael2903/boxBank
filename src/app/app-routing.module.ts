@@ -4,19 +4,23 @@ import { ExampleComponent } from './features/example/example.component';
 import { TransferComponent } from './features/transfer/transfer.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { CreateUserComponent } from './features/create-user/create-user.component';
+import { LoginComponent } from './features/login/login.component';
+import { AuthGuard } from './core/auth/auth.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
-    path: '',
-    component: ExampleComponent,
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'login', 
+    component: LoginComponent
   },
   {
     path: 'transfer',
     component: TransferComponent,
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'criar-conta',
@@ -28,4 +32,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
