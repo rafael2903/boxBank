@@ -20,7 +20,6 @@ export class LoginComponent {
       if (user) {
         this.router.navigate(['/dashboard']);
       } else {
-        // mat.snackbar
         this.snackBar.open('Login inválido. Verifique suas credenciais.', 'Fechar', {
           duration: 3000,
         });
