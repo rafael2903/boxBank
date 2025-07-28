@@ -23,13 +23,18 @@ export class DashboardComponent {
     this.ocultarSaldo = !this.ocultarSaldo;
   }
   verExtrato() {
-    console.log('Ver extrato');
+    console.log('vendo extrato');
     this.router.navigate(['/extrato']);
   }
 
   transferir() {
-    console.log('Transferir');
+    console.log('transferir');
     this.router.navigate(['/transfer']);
+  }
+
+  logout() {
+    console.log('sair');
+    this.router.navigate(['/login']);
   }
 }
 

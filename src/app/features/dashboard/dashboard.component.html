@@ -1,4 +1,9 @@
 <div class="container">
+  <div class="top-bar">
+    <button mat-icon-button color="warn" matTooltip="Sair" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
   <mat-card>
     <mat-card-content>
       <h2>Bem-vindo, {{ nome }}!</h2>
