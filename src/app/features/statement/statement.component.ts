@@ -1,7 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { Observable, combineLatest, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthService } from '../../core/auth/auth.service';
+import { TransactionsService } from '../../shared/services/transactions.service';
+import { UsersService } from '../../shared/services/users.service';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
-interface StatementEntry {
-  date: string;
+export interface StatementEntry {
+  date: Date;
   counterparty: string;
   amount: number;
   direction: 'incoming' | 'outgoing';
@@ -9,25 +17,69 @@ interface StatementEntry {
 
 @Component({
   selector: 'app-statement',
-  templateUrl: './statement.component.html',
   standalone: false,
-  styleUrls: ['./statement.component.scss']
+  templateUrl: './statement.component.html',
+  styleUrls: ['./statement.component.scss'],
 })
-export class StatementComponent {
+export class StatementComponent implements OnInit {
   displayedColumns: string[] = ['date', 'description', 'amount'];
-  dataSource: StatementEntry[] = [];
-  private currentUserId = 1;
-   private users = new Map<number, string>([
-    [1, 'You'],
-    [2, 'Jane Doe'],
-    [3, 'Local Supermarket']
-  ]);
+  private _liveAnnouncer = inject(LiveAnnouncer);
+  dataSource = new MatTableDataSource<StatementEntry>([]);
+  @ViewChild(MatSort) sort!: MatSort;
+  constructor(
+    private authService: AuthService,
+    private transactionsService: TransactionsService,
+    private usersService: UsersService
+  ) {}
 
-  // dataSource: StatementEntry[] = [
-  //   { date: '2025-07-01', counterparty: 'Your Employer Inc.', amount: 3000, direction: 'incoming' },
-  //   { date: '2025-07-03', counterparty: 'Local Supermarket', amount: 150, direction: 'outgoing' },
-  //   { date: '2025-07-05', counterparty: 'City Power & Light', amount: 200, direction: 'outgoing' },
-  //   { date: '2025-07-10', counterparty: 'Jane Doe', amount: 500, direction: 'incoming' },
-  //   { date: '2025-07-12', counterparty: 'The Corner Bistro', amount: 80, direction: 'outgoing' }
-  // ];
+   ngOnInit(): void {
+    combineLatest([
+      this.authService.currentUser$,
+      this.transactionsService.getAll(),
+      this.usersService.getAll(),
+    ]).pipe(
+      map(([currentUser, allTransactions, allUsers]) => {
+        if (!currentUser) return [];
+
+        const usersMap = new Map<string, string>(allUsers.map(u => [u.id, u.name]));
+
+        return allTransactions
+          .filter(tx => tx.senderId === currentUser.id || tx.receiverId === currentUser.id)
+          .map((tx): StatementEntry => {
+            // ... mapping logic from before
+            const isIncoming = tx.receiverId === currentUser.id;
+            const direction = isIncoming ? 'incoming' : 'outgoing';
+            const counterpartyId = isIncoming ? tx.senderId : tx.receiverId;
+            const counterpartyName = usersMap.get(counterpartyId) || 'Unknown User';
+
+            return {
+              date: tx.date,
+              counterparty: counterpartyName,
+              amount: tx.value,
+              direction: direction,
+            };
+          })
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      })
+    ).subscribe(processedEntries => {
+      // Update the dataSource's data property
+      this.dataSource.data = processedEntries;
+     
+    });
+  }
+    ngAfterViewInit() {
+    // Connect the sort directive to the data source
+    this.dataSource.sort = this.sort;
+  }
+   announceSortChange(sortState: Sort) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
 }

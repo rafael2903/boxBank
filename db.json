@@ -6,7 +6,7 @@
       "email": "jose@example.com",
       "name": "José Soares",
       "password": "senha123",
-      "amount": 150000
+      "amount": 127776.8
     },
     {
       "id": "2",
@@ -22,7 +22,7 @@
       "email": "daniel@example.com",
       "name": "Daniel Caldas",
       "password": "senha123",
-      "amount": 131100
+      "amount": 131101
     },
     {
       "id": "5d07",
@@ -30,7 +30,7 @@
       "email": "j6se@example.com",
       "name": "Jo4é Soares",
       "password": "senha123",
-      "amount": 5900
+      "amount": 28122.2
     }
   ],
   "transactions": [
@@ -110,6 +110,20 @@
       "receiverId": "3",
       "value": 4,
       "date": "2025-07-29T02:19:52.105Z"
+    },
+    {
+      "id": "6797",
+      "senderId": "1",
+      "receiverId": "3",
+      "value": 1,
+      "date": "2025-07-29T03:58:06.253Z"
+    },
+    {
+      "id": "f74c",
+      "senderId": "1",
+      "receiverId": "5d07",
+      "value": 22222.2,
+      "date": "2025-07-29T04:43:09.350Z"
     }
   ]
 }

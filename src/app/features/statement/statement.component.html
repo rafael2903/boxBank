@@ -1,42 +1,38 @@
-<mat-card>
-  <mat-card-title>BoxBank</mat-card-title>
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z2">
-    <ng-container matColumnDef="date">
-      <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.date }}</mat-cell>
-    </ng-container>
+<mat-card-title>Extrato Bancário</mat-card-title>
+<table
+  mat-table
+  matSort
+  [dataSource]="dataSource"
+  class="mat-elevation-z2"
+  (matSortChange)="announceSortChange($event)"
+>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.date | date : "dd/MM/yyyy HH:mm" }}
+    </td>
+  </ng-container>
 
-    <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
-      <mat-cell *matCellDef="let element"
-        ><ng-container *ngIf="element.direction === 'incoming'">
-          Transferência recebida por <strong>{{ element.counterparty }}</strong>
-        </ng-container>
-        <ng-container *ngIf="element.direction === 'outgoing'">
-          Transferência para <strong>{{ element.counterparty }}</strong>
-        </ng-container></mat-cell
-      >
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Descrição</th>
+    <td mat-cell *matCellDef="let element">
+      <span *ngIf="element.direction === 'incoming'">
+        Transferência recebida de <strong>{{ element.counterparty }}</strong>
+      </span>
+      <span *ngIf="element.direction === 'outgoing'">
+        Transferência para <strong>{{ element.counterparty }}</strong>
+      </span>
+    </td>
+  </ng-container>
 
-    </ng-container>
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
+    <td mat-cell *matCellDef="let element" [ngClass]="element.direction">
+      {{ element.direction === "incoming" ? "+" : "-" }}
+      {{ element.amount | currency : "BRL" }}
+    </td>
+  </ng-container>
 
-    <ng-container matColumnDef="amount">
-      <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <span [ngClass]="element.type"
-          ><span
-            [ngClass]="{
-              incoming: element.direction === 'incoming',
-              outgoing: element.direction === 'outgoing'
-            }"
-          >
-            {{ element.direction === "incoming" ? "+" : "-" }}
-            {{ element.amount | currency : "BRL" }}
-          </span></span
-        >
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
-</mat-card>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
