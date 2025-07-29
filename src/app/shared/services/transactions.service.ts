@@ -21,6 +21,15 @@ export class TransactionsService {
     return this.http.get<Transaction>(`${this.API_URL}/${id}`);
   }
 
+  getByAttribute(
+    attribute: keyof Transaction,
+    value: string
+  ): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(
+      `${this.API_URL}?${attribute}=${value}`
+    );
+  }
+
   create(transactionDto: CreateTransactionDto): Observable<Transaction> {
     return this.http.post<Transaction>(this.API_URL, transactionDto);
   }

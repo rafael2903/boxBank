@@ -20,13 +20,23 @@
 
             <mat-form-field floatLabel="always">
               <mat-label>Valor</mat-label>
-              <input matInput type="number" placeholder="0" formControlName="amount" required />
+              <input
+                matInput
+                type="number"
+                placeholder="0"
+                formControlName="amount"
+                required
+                #amountInput
+                (focus)="amountInput.select()"
+              />
               <span matTextPrefix>R$&nbsp;</span>
-              <span matTextSuffix>.00</span>
-              <mat-error *ngIf="transferDataForm.get('amount')?.hasError('min')">Valor mínimo para transferência é R$
-                1,00</mat-error>
-              <mat-error *ngIf="transferDataForm.get('amount')?.hasError('maxAmountExceeded')">Saldo insuficiente para
-                realizar a transferência.</mat-error>
+              <!-- <span matTextSuffix>.00</span> -->
+              <mat-error *ngIf="transferDataForm.get('amount')?.hasError('min')">
+                Valor mínimo para transferência é R$ 1,00
+              </mat-error>
+              <mat-error *ngIf="transferDataForm.get('amount')?.hasError('maxAmountExceeded')">
+                Saldo insuficiente para realizar a transferência.
+              </mat-error>
             </mat-form-field>
           </div>
 

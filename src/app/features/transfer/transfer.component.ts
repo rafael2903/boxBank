@@ -20,6 +20,12 @@ import { User } from '../../shared/models/user.model';
 import { TransferService } from '../../shared/services/transfer.service';
 import { UsersService } from '../../shared/services/users.service';
 
+enum Step {
+  TransferData,
+  Review,
+  Confirmation,
+}
+
 @Component({
   selector: 'app-transfer',
   standalone: false,
@@ -95,38 +101,36 @@ export class TransferComponent implements OnInit {
       .subscribe({
         next: () => {},
         error: (err: any) => {
-          this.stepper.selectedIndex = 1;
+          this.stepper.selectedIndex = Step.Review;
         },
       });
   }
 
-  private verifyReceiver(): Observable<boolean> {
+  private verifyReceiver() {
     const receiverId = this.transferDataForm.get('receiverId')?.value;
-    return this.usersService.getByAttribute('cpf', receiverId).pipe(
-      map((users: User[]) => {
-        if (users.length > 0) {
-          this.receiver = users[0];
-          return true;
-        } else {
-          this.receiver = undefined;
-          return false;
-        }
-      })
-    );
+    this.usersService.getByAttribute('cpf', receiverId).subscribe((users) => {
+      this.receiver = users?.[0];
+      if (!this.receiver) {
+        this.transferDataForm.get('receiverId')?.setErrors({ notFound: true });
+        this.stepper.selectedIndex = Step.TransferData;
+      }
+    });
   }
 
-  onSelectionChange(event: StepperSelectionEvent) {
-    if (event.selectedIndex === 1) {
-      this.verifyReceiver().subscribe((exists) => {
-        if (!exists) {
-          this.transferDataForm
-            .get('receiverId')
-            ?.setErrors({ notFound: true });
-          event.previouslySelectedStep.select();
-        }
-      });
-    }
+  private readonly STEP_ACTIONS: Record<
+    Step,
+    (event: StepperSelectionEvent) => void
+  > = {
+    [Step.TransferData]: () => {},
+    [Step.Review]: () => {
+      this.verifyReceiver();
+    },
+    [Step.Confirmation]: () => {
+      this.transfer();
+    },
+  };
 
-    if (event.selectedIndex === 2) this.transfer();
+  onSelectionChange(event: StepperSelectionEvent) {
+    this.STEP_ACTIONS[event.selectedIndex as Step]?.(event);
   }
 }
