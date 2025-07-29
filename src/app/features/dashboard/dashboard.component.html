@@ -16,9 +16,9 @@
 
       <div class="amount">
         <h3>
-          Saldo: 
-          <span *ngIf="!ocultarSaldo">R$ {{ user.amount }}</span>
-          <span *ngIf="ocultarSaldo">••••••</span>         
+          Saldo:
+          <span *ngIf="!ocultarSaldo">{{ user.amount  | currency : "BRL" }}</span>
+          <span *ngIf="ocultarSaldo">R$ {{'•'.repeat(user?.amount?.toFixed(2)?.length || 6)}}</span>
         </h3>
         <button mat-icon-button color="primary" (click)="toggleOcultarSaldo()">
           <mat-icon>{{ ocultarSaldo ? 'visibility' : 'visibility_off' }}</mat-icon>
@@ -27,18 +27,18 @@
     </mat-card-content>
   </mat-card>
   <div >
-    <button 
+    <button
       [ngStyle]="{ 'margin-right': '6px' }"
-      type="button" 
-      mat-flat-button color="primary" 
+      type="button"
+      mat-flat-button color="primary"
       (click)="verExtrato()">
       <mat-icon>receipt_long</mat-icon>
       Extrato
     </button>
-    <button 
+    <button
       [ngStyle]="{ 'margin-left': '6px' }"
-      type="button" 
-      mat-flat-button color="accent" 
+      type="button"
+      mat-flat-button color="accent"
       (click)="transferir()">
       <mat-icon>sync_alt</mat-icon>
       Transferir
@@ -54,27 +54,27 @@
       <mat-icon>payments</mat-icon>
       Pagamentos
     </button>
-  
+
     <button mat-button>
       <mat-icon>credit_card</mat-icon>
       Cartão
     </button>
-  
+
     <button mat-button>
       <mat-icon>savings</mat-icon>
       Cofrinho
     </button>
-  
+
     <button mat-button>
       <mat-icon>account_balance</mat-icon>
       Empréstimo
     </button>
-  
+
     <button mat-button>
       <mat-icon>trending_up</mat-icon>
       Investimentos
     </button>
-  
+
     <button mat-button>
       <mat-icon>help_outline</mat-icon>
       Ajuda
