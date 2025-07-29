@@ -1,3 +1,4 @@
+<ng-container *ngIf="currentUser$ | async as user">
 <div class="container">
   <div class="top-bar">
     <button mat-icon-button color="warn" matTooltip="Sair" (click)="logout()">
@@ -6,7 +7,7 @@
   </div>
   <mat-card>
     <mat-card-content>
-      <h2>Bem-vindo, {{ nome }}!</h2>
+      <h2>Bem-vindo, {{ user.name }}!</h2>
 
       <div>
         <p>Agência: {{ agencia }}</p>
@@ -16,7 +17,7 @@
       <div class="amount">
         <h3>
           Saldo: 
-          <span *ngIf="!ocultarSaldo">R$ {{ saldo }}</span>
+          <span *ngIf="!ocultarSaldo">R$ {{ user.amount }}</span>
           <span *ngIf="ocultarSaldo">••••••</span>         
         </h3>
         <button mat-icon-button color="primary" (click)="toggleOcultarSaldo()">
@@ -80,3 +81,4 @@
     </button>
   </div>
 </div>
+</ng-container>

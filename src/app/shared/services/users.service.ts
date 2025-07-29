@@ -22,6 +22,10 @@ export class UsersService {
     return this.http.get<User>(`${this.API_URL}/${id}`);
   }
 
+  getByAttribute(attribute: keyof User, value: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.API_URL}?${attribute}=${value}`);
+  }
+
   create(userDto: CreateUserDto): Observable<User> {
     return this.http.post<User>(this.API_URL, userDto);
   }

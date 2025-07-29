@@ -8,11 +8,13 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [TransferComponent],
   imports: [
     CommonModule,
+    SharedModule,
     MatButtonModule,
     MatStepperModule,
     FormsModule,
@@ -21,6 +23,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatInputModule,
     AsyncPipe,
     MatIconModule,
+
   ],
   providers: [
     {

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../../core/auth/auth.service';
+import { User } from '../../shared/models/user.model';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-dashboard',
   standalone: false,
@@ -8,16 +10,17 @@ import { Router } from '@angular/router';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  nome: string = 'João';
+  currentUser$: Observable<User | null>;
+  ocultarSaldo: boolean = false;
   agencia: string = '0001';
   conta: string = '56789-0';
-  saldo: number = 12345.67;
-  ocultarSaldo: boolean = false;
+
 
   constructor(
-    private router: Router
-  ){
-    
+    private router: Router,
+    private authService: AuthService 
+  ) {
+    this.currentUser$ = this.authService.currentUser$;
   }
   toggleOcultarSaldo() {
     this.ocultarSaldo = !this.ocultarSaldo;
@@ -31,10 +34,9 @@ export class DashboardComponent {
     console.log('transferir');
     this.router.navigate(['/transfer']);
   }
-
-  logout() {
-    console.log('sair');
-    this.router.navigate(['/login']);
+logout() {
+    this.authService.logout(); 
+    this.router.navigate(['/login']); 
   }
 }
 

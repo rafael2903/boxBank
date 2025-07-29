@@ -1,6 +1,7 @@
 <div class="container">
   <h1>Realizar Transferência</h1>
-  <mat-stepper labelPosition="bottom" linear #stepper [orientation]="(stepperOrientation | async)!">
+  <mat-stepper labelPosition="bottom" linear #stepper [orientation]="(stepperOrientation | async)!"
+    (selectionChange)="onSelectionChange($event)">
 
     <mat-step [stepControl]="transferDataForm" state="data">
       <div class="step">
@@ -9,10 +10,12 @@
           <div class="transfer-form-fields">
             <mat-form-field>
               <mat-label>CPF do destinatário</mat-label>
-              <input autofocus matInput placeholder="Digite o CPF" formControlName="senderId" required
+              <input autofocus matInput placeholder="Digite o CPF" formControlName="receiverId" required
                 inputmode="numeric" pattern="[0-9]*" />
-              <mat-error *ngIf="transferDataForm.get('senderId')?.hasError('required')">Informe o CPF</mat-error>
-              <mat-error *ngIf="transferDataForm.get('senderId')?.hasError('pattern')">CPF inválido</mat-error>
+              <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('required')">Informe o CPF</mat-error>
+              <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('pattern')">CPF inválido</mat-error>
+              <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('notFound')">Usuário não encontrado</mat-error>
+              <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('selfTransfer')">Não é possível transferir para si mesmo</mat-error>
             </mat-form-field>
 
             <mat-form-field floatLabel="always">
@@ -22,12 +25,14 @@
               <span matTextSuffix>.00</span>
               <mat-error *ngIf="transferDataForm.get('amount')?.hasError('min')">Valor mínimo para transferência é R$
                 1,00</mat-error>
+              <mat-error *ngIf="transferDataForm.get('amount')?.hasError('maxAmountExceeded')">Saldo insuficiente para
+                realizar a transferência.</mat-error>
             </mat-form-field>
           </div>
 
           <div class="actions">
             <button type="button" mat-button (click)="goHome()">Cancelar</button>
-            <button type="submit" mat-flat-button matStepperNext>Avançar</button>
+            <button type="submit" mat-flat-button matStepperNext [disabled]="transferDataForm.invalid">Avançar</button>
           </div>
         </form>
       </div>
@@ -36,6 +41,14 @@
     <mat-step state="review">
       <div class="step">
         <h2>Revisar Transferência</h2>
+
+        <div class="review-details">
+          <p><strong>CPF do destinatário:</strong> {{ receiver?.cpf | cpf }}</p>
+          <p><strong>Nome do destinatário:</strong> {{ receiver?.name }}</p>
+          <p><strong>Valor da transferência:</strong> R$ {{ transferDataForm.get('amount')?.value | number:'1.2-2' }}
+          </p>
+        </div>
+
         <div class="actions">
           <button mat-button matStepperPrevious>Voltar</button>
           <button mat-flat-button matStepperNext>Transferir</button>
