@@ -3,12 +3,12 @@
 
   <form (ngSubmit)="cadastrarUsuario()">
     <div class="form-group">
-      <label for="nome">Nome:</label>
+      <label for="nome">Nome</label>
       <input type="text" id="nome" name="nome" [(ngModel)]="nome" required />
     </div>
 
     <div class="form-group">
-      <label for="email">Email:</label>
+      <label for="email">Email</label>
       <input
         type="email"
         id="email"
@@ -19,12 +19,12 @@
     </div>
 
     <div class="form-group">
-      <label for="email">CPF:</label>
+      <label for="email">CPF</label>
       <input type="text" id="cpf" name="cpf" [(ngModel)]="cpf" required />
     </div>
 
     <div class="form-group">
-      <label for="senha">Senha:</label>
+      <label for="senha">Senha</label>
       <input
         type="password"
         id="senha"
@@ -35,7 +35,7 @@
     </div>
 
     <div class="form-group">
-      <label for="confirmarSenha">Confirmar Senha:</label>
+      <label for="confirmarSenha">Confirmar Senha</label>
       <input
         type="password"
         id="confirmarSenha"
@@ -56,7 +56,7 @@
     <button mat-button type="submit">Criar</button>
 
     <div class="login-link-container">
-      <a href="/login">Já tem uma conta? <span>Entre</span></a>
+      <a routerLink="/login">Já tem uma conta? <span>Entre</span></a>
     </div>
   </form>
 </div>

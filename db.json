@@ -18,26 +18,19 @@
     },
     {
       "id": "3",
-      "cpf": "111.222.333-44",
+      "cpf": "11122233344",
       "email": "daniel@example.com",
       "name": "Daniel Caldas",
       "password": "senha123",
-      "amount": 4000
+      "amount": 131100
     },
     {
       "id": "5d07",
-      "cpf": "523.456.789-00",
+      "cpf": "52345678900",
       "email": "j6se@example.com",
       "name": "Jo4é Soares",
       "password": "senha123",
-      "amount": 133000
-    },
-    {
-      "id": "e4e0",
-      "cpf": "523.456.789-00",
-      "email": "j6se@example.com",
-      "name": "Jo4é Soares",
-      "password": "senha123"
+      "amount": 5900
     }
   ],
   "transactions": [
@@ -75,6 +68,48 @@
       "senderId": "2",
       "value": 100,
       "date": "2025-07-27T01:42:51.716Z"
+    },
+    {
+      "id": "97ac",
+      "senderId": "5d07",
+      "receiverId": "3",
+      "value": 330,
+      "date": "2025-07-29T01:56:40.561Z"
+    },
+    {
+      "id": "b96b",
+      "senderId": "5d07",
+      "receiverId": "3",
+      "value": 3333,
+      "date": "2025-07-29T02:02:58.541Z"
+    },
+    {
+      "id": "91af",
+      "senderId": "5d07",
+      "receiverId": "3",
+      "value": 100,
+      "date": "2025-07-29T02:04:34.847Z"
+    },
+    {
+      "id": "a521",
+      "senderId": "5d07",
+      "receiverId": "3",
+      "value": 33333,
+      "date": "2025-07-29T02:15:57.094Z"
+    },
+    {
+      "id": "71c6",
+      "senderId": "5d07",
+      "receiverId": "3",
+      "value": 90000,
+      "date": "2025-07-29T02:16:46.079Z"
+    },
+    {
+      "id": "cea2",
+      "senderId": "5d07",
+      "receiverId": "3",
+      "value": 4,
+      "date": "2025-07-29T02:19:52.105Z"
     }
   ]
 }

@@ -3,7 +3,7 @@
 
   <form (ngSubmit)="login()">
     <div class="form-group">
-      <label for="email">Email:</label>
+      <label for="email">Email</label>
       <input
         type="email"
         id="email"
@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-group">
-      <label for="password">Senha:</label>
+      <label for="password">Senha</label>
       <input
         type="password"
         id="password"
@@ -27,7 +27,7 @@
     <button mat-button type="submit">Entrar</button>
 
     <div class="login-link-container">
-      <a href="/criar-conta">Não tem uma conta? <span>Criar conta</span></a>
+      <a routerLink="/criar-conta">Não tem uma conta? <span>Criar conta</span></a>
     </div>
   </form>
 </div>
