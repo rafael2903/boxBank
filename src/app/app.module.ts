@@ -9,6 +9,8 @@ import { TransferModule } from './features/transfer/transfer.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
 import { CreateUserComponent } from './features/create-user/create-user.component';
 import { CreateUserModule } from './features/create-user/create-user.module';
+import { StatementModule } from './features/statement/statement.module';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -18,6 +20,7 @@ import { CreateUserModule } from './features/create-user/create-user.module';
     TransferModule,
     DashboardModule,
     CreateUserModule,
+    StatementModule
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],

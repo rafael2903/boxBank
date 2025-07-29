@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-title>BoxBank</mat-card-title>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
+      <mat-cell *matCellDef="let element"
+        ><ng-container *ngIf="element.direction === 'incoming'">
+          Transferência recebida por <strong>{{ element.counterparty }}</strong>
+        </ng-container>
+        <ng-container *ngIf="element.direction === 'outgoing'">
+          Transferência para <strong>{{ element.counterparty }}</strong>
+        </ng-container></mat-cell
+      >
+
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span [ngClass]="element.type"
+          ><span
+            [ngClass]="{
+              incoming: element.direction === 'incoming',
+              outgoing: element.direction === 'outgoing'
+            }"
+          >
+            {{ element.direction === "incoming" ? "+" : "-" }}
+            {{ element.amount | currency : "BRL" }}
+          </span></span
+        >
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</mat-card>

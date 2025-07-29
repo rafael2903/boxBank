@@ -4,7 +4,7 @@ import { ExampleComponent } from './features/example/example.component';
 import { TransferComponent } from './features/transfer/transfer.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { CreateUserComponent } from './features/create-user/create-user.component';
-
+import { StatementComponent } from './features/statement/statement.component';
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +22,7 @@ const routes: Routes = [
     path: 'criar-conta',
     component: CreateUserComponent,
   },
+  { path: 'extrato', component: StatementComponent },
 ];
 
 @NgModule({
