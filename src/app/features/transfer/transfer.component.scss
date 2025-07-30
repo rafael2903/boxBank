@@ -15,13 +15,13 @@ input[type="number"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
+  gap: 24px;
   width: 100%;
   margin: 0 auto;
 }
 .steps-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 848px;
 }
 
 .transfer-form {
@@ -64,8 +64,3 @@ input[type="number"] {
   background-color: transparent;
 }
 
-.mat-horizontal-content-container{
-   width: 100%;
-  max-width: 800px;
-  padding: 0;
-}

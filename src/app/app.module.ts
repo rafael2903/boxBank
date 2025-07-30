@@ -12,7 +12,7 @@ import { StatementModule } from './features/statement/statement.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
 import { LoginModule } from './features/login/login.module';
 import { TransferModule } from './features/transfer/transfer.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -25,6 +25,7 @@ registerLocaleData(localePt);
     CreateUserModule,
     StatementModule,
     LoginModule,
+    BrowserAnimationsModule,
   ],
   providers: [provideHttpClient(), { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent],

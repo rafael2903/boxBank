@@ -13,18 +13,25 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard],
+    data: { animation: 'DashboardPage' },
   },
   { path: 'login', component: LoginComponent },
   {
     path: 'transfer',
     component: TransferComponent,
     canActivate: [AuthGuard],
+    data: { animation: 'TransferPage' },
   },
   {
     path: 'criar-conta',
     component: CreateUserComponent,
   },
-  { path: 'extrato', component: StatementComponent,canActivate: [AuthGuard], },
+  {
+    path: 'extrato',
+    component: StatementComponent,
+    canActivate: [AuthGuard],
+    data: { animation: 'StatementPage' },
+  },
 ];
 
 @NgModule({

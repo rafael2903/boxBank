@@ -8,7 +8,9 @@
   justify-content: center;
   align-items: center;
 }
-
+.route-animation-container {
+  position: relative;
+}
 main {
   width: 70%;
   height: 85%;
@@ -19,7 +21,7 @@ main {
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-
+  min-height: 800px;
   @media screen and (max-width: vars.$breakpoint-md) {
     width: 90%;
     min-width: unset;
