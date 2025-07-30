@@ -6,7 +6,7 @@
       "email": "jose@example.com",
       "name": "José Soares",
       "password": "senha123",
-      "amount": 127761.8
+      "amount": 125524.8
     },
     {
       "id": "2",
@@ -22,7 +22,7 @@
       "email": "daniel@example.com",
       "name": "Daniel Caldas",
       "password": "senha123",
-      "amount": 131102
+      "amount": 133339
     },
     {
       "id": "5d07",
@@ -145,6 +145,27 @@
       "receiverId": "5d07",
       "value": 12,
       "date": "2025-07-29T04:56:18.549Z"
+    },
+    {
+      "id": "e689",
+      "senderId": "1",
+      "receiverId": "3",
+      "value": 2,
+      "date": "2025-07-30T02:36:44.056Z"
+    },
+    {
+      "id": "f463",
+      "senderId": "1",
+      "receiverId": "3",
+      "value": 2,
+      "date": "2025-07-30T02:37:04.074Z"
+    },
+    {
+      "id": "94d5",
+      "senderId": "1",
+      "receiverId": "3",
+      "value": 2233,
+      "date": "2025-07-30T02:42:28.857Z"
     }
   ]
 }

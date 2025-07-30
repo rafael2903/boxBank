@@ -1,6 +1,6 @@
-<div class="container">
-  <h1>Realizar Transferência</h1>
-  <mat-stepper labelPosition="bottom" linear #stepper [orientation]="(stepperOrientation | async)!"
+<div class="transfer-container">
+  <app-header [headerTitle]="`Realizar transferência`"></app-header>
+  <div class="steps-container">   <mat-stepper labelPosition="bottom" linear #stepper [orientation]="(stepperOrientation | async)!"
     (selectionChange)="onSelectionChange($event)">
 
     <mat-step [stepControl]="transferDataForm" state="data">
@@ -85,5 +85,6 @@
     <ng-template matStepperIcon="success">
       <mat-icon>price_check</mat-icon>
     </ng-template>
-  </mat-stepper>
+  </mat-stepper></div>
+
 </div>

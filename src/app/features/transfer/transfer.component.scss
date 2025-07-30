@@ -11,10 +11,17 @@ input[type="number"] {
   appearance: textfield;
 }
 
-.container {
+.transfer-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  margin: 0 auto;
+}
+.steps-container {
+  width: 100%;
+  max-width: 800px;
 }
 
 .transfer-form {
@@ -55,4 +62,10 @@ input[type="number"] {
 .mat-stepper-vertical,
 .mat-stepper-horizontal {
   background-color: transparent;
+}
+
+.mat-horizontal-content-container{
+   width: 100%;
+  max-width: 800px;
+  padding: 0;
 }
