@@ -4,34 +4,14 @@ $primary-color: #3f51b5;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
-  gap: 32px;
-  height: 100%;
-}
-
-.dashboard-header {
+  gap: 48px;
   width: 100%;
-  max-width: 600px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  h2 {
-    margin: 0;
-    font-size: 1.875rem;
-    font-weight: 600;
-    color: #212121;
-    letter-spacing: -0.5px;
-  }
-
-  .logout-button {
-    color: #f44336;
-  }
+  margin: 0 auto;
 }
 
 .account-widget {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   .account-details {
@@ -73,13 +53,12 @@ $primary-color: #3f51b5;
 
 .services-section {
   width: 100%;
-  max-width: 600px;
   text-align: left;
-
+  max-width: 800px;
   h4 {
     margin-top: 0;
     margin-bottom: 16px;
-    font-size: 1.125rem;
+    font-size: 22px;
     font-weight: 500;
     color: #424242;
   }

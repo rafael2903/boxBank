@@ -1,0 +1,25 @@
+
+<header class="dashboard-header">
+  <!-- This button now calls a method within the HeaderComponent -->
+  <button
+    mat-icon-button
+    class="back-button"
+    matTooltip="Voltar"
+    (click)="onGoBack()"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <!-- The user's name is now passed in via the 'userName' Input -->
+  <h2 *ngIf="userName">Bem-vindo, {{ userName }}!</h2>
+
+  <!-- This button also calls a method within the HeaderComponent -->
+  <button
+    mat-icon-button
+    class="logout-button"
+    matTooltip="Sair"
+    (click)="onLogout()"
+  >
+    <mat-icon>logout</mat-icon>
+  </button>
+</header>

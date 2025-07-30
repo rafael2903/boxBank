@@ -1,16 +1,10 @@
 <ng-container *ngIf="currentUser$ | async as user">
   <div class="dashboard-container">
-    <header class="dashboard-header">
-      <h2>Bem-vindo, {{ user.name }}!</h2>
-      <button
-        mat-icon-button
-        class="logout-button"
-        matTooltip="Sair"
-        (click)="logout()"
-      >
-        <mat-icon>logout</mat-icon>
-      </button>
-    </header>
+        <app-header
+      [userName]="user.name"
+      (goBackClicked)="goBack()"
+      (logoutClicked)="logout()"
+    ></app-header>
 
     <mat-card class="account-widget">
       <mat-card-content>
