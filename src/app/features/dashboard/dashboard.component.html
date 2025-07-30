@@ -1,84 +1,91 @@
 <ng-container *ngIf="currentUser$ | async as user">
-<div class="container">
-  <div class="top-bar">
-    <button mat-icon-button color="warn" matTooltip="Sair" (click)="logout()">
-      <mat-icon>logout</mat-icon>
-    </button>
-  </div>
-  <mat-card>
-    <mat-card-content>
+  <div class="dashboard-container">
+    <header class="dashboard-header">
       <h2>Bem-vindo, {{ user.name }}!</h2>
+      <button
+        mat-icon-button
+        class="logout-button"
+        matTooltip="Sair"
+        (click)="logout()"
+      >
+        <mat-icon>logout</mat-icon>
+      </button>
+    </header>
 
-      <div>
-        <p>Agência: {{ agencia }}</p>
-        <p>Conta: {{ conta }}</p>
-      </div>
+    <mat-card class="account-widget">
+      <mat-card-content>
+        <div class="account-details">
+          <span>Agência: {{ agencia }}</span>
+          <span>Conta: {{ conta }}</span>
+        </div>
 
-      <div class="amount">
-        <h3>
-          Saldo:
-          <span *ngIf="!ocultarSaldo">{{ user.amount  | currency : "BRL" }}</span>
-          <span *ngIf="ocultarSaldo">R$ {{'•'.repeat(user?.amount?.toFixed(2)?.length || 6)}}</span>
-        </h3>
-        <button mat-icon-button color="primary" (click)="toggleOcultarSaldo()">
-          <mat-icon>{{ ocultarSaldo ? 'visibility' : 'visibility_off' }}</mat-icon>
+        <div class="balance">
+          <h3>
+            <span *ngIf="!ocultarSaldo">{{
+              user.amount | currency : "BRL"
+            }}</span>
+            <span *ngIf="ocultarSaldo" class="hidden-balance"
+              >R$ •••••••,••</span
+            >
+          </h3>
+          <button
+            mat-icon-button
+            (click)="toggleOcultarSaldo()"
+            matTooltip="{{ ocultarSaldo ? 'Mostrar saldo' : 'Ocultar saldo' }}"
+          >
+            <mat-icon>{{
+              ocultarSaldo ? "visibility" : "visibility_off"
+            }}</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" (click)="verExtrato()">
+          <mat-icon>receipt_long</mat-icon>
+          Extrato
+        </button>
+        <button mat-flat-button color="accent" (click)="transferir()">
+          <mat-icon>sync_alt</mat-icon>
+          Transferir
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <section class="services-section">
+      <h4>O que deseja fazer?</h4>
+      <div class="services-grid">
+        <button mat-button class="service-button">
+          <mat-icon>currency_exchange</mat-icon>
+          Pix
+        </button>
+        <button mat-button class="service-button">
+          <mat-icon>payments</mat-icon>
+          Pagamentos
+        </button>
+        <button mat-button class="service-button">
+          <mat-icon>credit_card</mat-icon>
+          Cartão
+        </button>
+        <button mat-button class="service-button">
+          <mat-icon>savings</mat-icon>
+          Cofrinho
+        </button>
+        <button mat-button class="service-button">
+          <mat-icon>account_balance</mat-icon>
+          Empréstimo
+        </button>
+        <button mat-button class="service-button">
+          <mat-icon>trending_up</mat-icon>
+          Investimentos
         </button>
       </div>
-    </mat-card-content>
-  </mat-card>
-  <div >
-    <button
-      [ngStyle]="{ 'margin-right': '6px' }"
-      type="button"
-      mat-flat-button color="primary"
-      (click)="verExtrato()">
-      <mat-icon>receipt_long</mat-icon>
-      Extrato
-    </button>
-    <button
-      [ngStyle]="{ 'margin-left': '6px' }"
-      type="button"
-      mat-flat-button color="accent"
-      (click)="transferir()">
-      <mat-icon>sync_alt</mat-icon>
-      Transferir
-    </button>
+    </section>
+
+    <section class="help-section">
+      <button mat-button>
+        <mat-icon>help_outline</mat-icon>
+        Ajuda
+      </button>
+    </section>
   </div>
-  <div class="acoes-bancarias">
-    <button mat-button>
-      <mat-icon>currency_exchange</mat-icon>
-      Pix
-    </button>
-
-    <button mat-button>
-      <mat-icon>payments</mat-icon>
-      Pagamentos
-    </button>
-
-    <button mat-button>
-      <mat-icon>credit_card</mat-icon>
-      Cartão
-    </button>
-
-    <button mat-button>
-      <mat-icon>savings</mat-icon>
-      Cofrinho
-    </button>
-
-    <button mat-button>
-      <mat-icon>account_balance</mat-icon>
-      Empréstimo
-    </button>
-
-    <button mat-button>
-      <mat-icon>trending_up</mat-icon>
-      Investimentos
-    </button>
-
-    <button mat-button>
-      <mat-icon>help_outline</mat-icon>
-      Ajuda
-    </button>
-  </div>
-</div>
 </ng-container>
