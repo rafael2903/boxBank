@@ -1,29 +1,26 @@
-
-
-.statement-container{
-   display: flex;
+.statement-container {
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 48px;
   width: 100%;
   margin: 0 auto;
 }
+
 .table-container {
-   width: 100%;
+  width: 100%;
   max-width: 800px;
   border-radius: 12px 12px 0 0;
   border: 1px solid #e5e7eb;
- 
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 table {
   width: 100%;
-   max-width: 800px;
-  border-collapse: collapse;
+  max-width: 800px;
   background: #fff;
   border-radius: 12px 12px 0 0;
   overflow: hidden;
- 
 }
 
 th.mat-mdc-header-cell {
@@ -39,17 +36,11 @@ td.mat-mdc-cell {
   font-size: 14px;
   color: #374151;
   padding: 16px;
-  border-bottom: 1px solid #cfd1d6;
-}
-
-tr.mat-mdc-row:hover {
-  background-color: #f5f7fa;
-  transition: background-color 0.3s ease;
+  border-bottom: none;
 }
 
 .mat-column-description {
   width: 50%;
-  border-right: 1px solid #cfd1d6;
 }
 
 .mat-column-amount {
@@ -59,7 +50,6 @@ tr.mat-mdc-row:hover {
 
 .mat-column-date {
   width: 25%;
-  border-right: 1px solid #cfd1d6;
 }
 
 ::ng-deep .mat-mdc-cell.cdk-column-amount {
@@ -68,11 +58,11 @@ tr.mat-mdc-row:hover {
 }
 
 ::ng-deep .mat-mdc-cell.cdk-column-amount.incoming {
-  color: #22c55e; 
+  color: #22c55e;
 }
 
 ::ng-deep .mat-mdc-cell.cdk-column-amount.outgoing {
-  color: #ef4444; 
+  color: #ef4444;
 }
 
 ::ng-deep th.mat-sort-header.cdk-column-amount .mat-sort-header-container {
@@ -90,4 +80,3 @@ mat-card-title {
   color: #111827;
   margin-bottom: 16px;
 }
-

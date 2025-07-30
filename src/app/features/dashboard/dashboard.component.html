@@ -13,19 +13,14 @@
           <h3>
             <span *ngIf="!ocultarSaldo">{{
               user.amount | currency : "BRL"
-            }}</span>
-            <span *ngIf="ocultarSaldo" class="hidden-balance"
-              >R$ •••••••,••</span
-            >
+              }}</span>
+            <span *ngIf="ocultarSaldo" class="hidden-balance">R$ •••••••,••</span>
           </h3>
-          <button
-            mat-icon-button
-            (click)="toggleOcultarSaldo()"
-            matTooltip="{{ ocultarSaldo ? 'Mostrar saldo' : 'Ocultar saldo' }}"
-          >
+          <button mat-icon-button (click)="toggleOcultarSaldo()"
+            matTooltip="{{ ocultarSaldo ? 'Mostrar saldo' : 'Ocultar saldo' }}">
             <mat-icon>{{
               ocultarSaldo ? "visibility" : "visibility_off"
-            }}</mat-icon>
+              }}</mat-icon>
           </button>
         </div>
       </mat-card-content>

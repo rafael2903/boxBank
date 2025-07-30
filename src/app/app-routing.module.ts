@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TransferComponent } from './features/transfer/transfer.component';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { CreateUserComponent } from './features/create-user/create-user.component';
-import { StatementComponent } from './features/statement/statement.component';
-import { LoginComponent } from './features/login/login.component';
 import { AuthGuard } from './core/auth/auth.guard';
+import { CreateUserComponent } from './features/create-user/create-user.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { LoginComponent } from './features/login/login.component';
+import { StatementComponent } from './features/statement/statement.component';
+import { TransferComponent } from './features/transfer/transfer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
