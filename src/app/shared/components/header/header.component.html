@@ -1,0 +1,21 @@
+
+<header class="dashboard-header">
+   <button
+    mat-icon-button
+    class="back-button"
+    matTooltip="Voltar"
+    (click)="onGoBack()"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+   <h2 *ngIf="headerTitle">{{ headerTitle }}</h2>
+  <button
+    mat-icon-button
+    class="logout-button"
+    matTooltip="Sair"
+    (click)="onLogout()"
+  >
+    <mat-icon>logout</mat-icon>
+  </button>
+</header>

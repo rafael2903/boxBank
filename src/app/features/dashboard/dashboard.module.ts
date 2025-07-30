@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HeaderComponent } from '../../shared/components/header/header.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -16,7 +18,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ReactiveFormsModule,
     MatIconModule,
     MatCardModule,
-    MatTooltipModule
+    MatTooltipModule,
+    SharedModule
   ],
 })
 export class DashboardModule {}

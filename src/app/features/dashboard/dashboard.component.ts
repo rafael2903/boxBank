@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   selector: 'app-dashboard',
   standalone: false,
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
   currentUser$: Observable<User | null>;
@@ -17,7 +17,7 @@ export class DashboardComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthService 
+    private authService: AuthService,
   ) {
     this.currentUser$ = this.authService.currentUser$;
   }
@@ -30,9 +30,4 @@ export class DashboardComponent {
   transferir() {
     this.router.navigate(['/transfer']);
   }
-  logout() {
-    this.authService.logout(); 
-    this.router.navigate(['/login']); 
-  }
 }
-

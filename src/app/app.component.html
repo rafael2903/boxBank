@@ -1,3 +1,5 @@
 <main>
-  <router-outlet />
+  <div class="route-animation-container" [@routeAnimations]="getRouteAnimationData()">
+    <router-outlet />
+  </div>
 </main>
