@@ -9,7 +9,7 @@ import { ChildrenOutletContexts } from '@angular/router';
   standalone: false,
   styleUrl: './app.component.scss',
   animations: [
-    fader // <-- Register the animation
+    fader
   ]
 })
 export class AppComponent {
