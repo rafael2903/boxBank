@@ -15,7 +15,6 @@ export class DashboardComponent {
   agencia: string = '0001';
   conta: string = '56789-0';
 
-
   constructor(
     private router: Router,
     private authService: AuthService 
@@ -26,15 +25,12 @@ export class DashboardComponent {
     this.ocultarSaldo = !this.ocultarSaldo;
   }
   verExtrato() {
-    console.log('vendo extrato');
     this.router.navigate(['/extrato']);
   }
-
   transferir() {
-    console.log('transferir');
     this.router.navigate(['/transfer']);
   }
-logout() {
+  logout() {
     this.authService.logout(); 
     this.router.navigate(['/login']); 
   }

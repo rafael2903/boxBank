@@ -99,7 +99,11 @@ export class TransferComponent implements OnInit {
     this.transferService
       .transfer(this.sender.cpf, receiverId, amount)
       .subscribe({
-        next: () => {},
+        next: () => {
+          this.usersService.getById(this.sender.id).subscribe(user => {
+            this.authService.updateUser(user);
+          });
+        },
         error: (err: any) => {
           this.stepper.selectedIndex = Step.Review;
         },
