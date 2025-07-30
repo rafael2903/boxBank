@@ -11,7 +11,7 @@
             <mat-form-field>
               <mat-label>CPF do destinatário</mat-label>
               <input autofocus matInput placeholder="Digite o CPF" formControlName="receiverId" required
-                inputmode="numeric" pattern="[0-9]*" />
+                inputmode="numeric" pattern="[0-9]*" mask="000.000.000-00"/>
               <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('required')">Informe o CPF</mat-error>
               <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('pattern')">CPF inválido</mat-error>
               <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('notFound')">Usuário não encontrado</mat-error>
@@ -23,7 +23,6 @@
               <input
                 matInput
                 type="number"
-                placeholder="0"
                 formControlName="amount"
                 required
                 #amountInput
