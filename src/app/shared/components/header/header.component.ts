@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  @Input() userName: string | null = '';
+  @Input() headerTitle: string | null = '';
 
   constructor(
     private location: Location,

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
 import { User } from '../../shared/models/user.model';
 import { Observable } from 'rxjs';
-import { Location } from '@angular/common'; 
 @Component({
   selector: 'app-dashboard',
   standalone: false,
@@ -19,7 +18,6 @@ export class DashboardComponent {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private location: Location
   ) {
     this.currentUser$ = this.authService.currentUser$;
   }
