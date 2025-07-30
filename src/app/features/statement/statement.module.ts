@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { StatementComponent } from './statement.component';
-import {MatSortModule} from '@angular/material/sort';
-import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../../shared/shared.module';
+import { StatementComponent } from './statement.component';
 
 @NgModule({
   declarations: [StatementComponent],
@@ -16,11 +16,11 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     MatTableModule,
     MatCardModule,
-    MatProgressSpinnerModule, 
+    MatProgressSpinnerModule,
     MatIconModule,
     MatSortModule,
     MatPaginatorModule,
-    SharedModule
+    SharedModule,
   ],
 })
 export class StatementModule {}

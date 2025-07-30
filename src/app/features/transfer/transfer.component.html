@@ -1,89 +1,88 @@
 <div class="transfer-container">
   <app-header [headerTitle]="`Realizar transferência`"></app-header>
-  <div class="steps-container">   <mat-stepper labelPosition="bottom" linear #stepper [orientation]="(stepperOrientation | async)!"
-    (selectionChange)="onSelectionChange($event)">
+  <div class="steps-container"> <mat-stepper labelPosition="bottom" linear #stepper
+      [orientation]="(stepperOrientation | async)!" (selectionChange)="onSelectionChange($event)">
 
-    <mat-step [stepControl]="transferDataForm" state="data">
-      <div class="step">
-        <h2>Dados da Transferência</h2>
-        <form [formGroup]="transferDataForm" class="transfer-form">
-          <div class="transfer-form-fields">
-            <mat-form-field>
-              <mat-label>CPF do destinatário</mat-label>
-              <input autofocus matInput placeholder="Digite o CPF" formControlName="receiverId" required
-                inputmode="numeric" pattern="[0-9]*" mask="000.000.000-00"/>
-              <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('required')">Informe o CPF</mat-error>
-              <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('pattern')">CPF inválido</mat-error>
-              <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('notFound')">Usuário não encontrado</mat-error>
-              <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('selfTransfer')">Não é possível transferir para si mesmo</mat-error>
-            </mat-form-field>
+      <mat-step [stepControl]="transferDataForm" state="data">
+        <div class="step">
+          <div class="transfer-data-header">
+            <h2>Dados da Transferência</h2>
+            <p>Saldo em conta: <span>{{ sender.amount | currency: "BRL" }}</span></p>
+          </div>
+          <form [formGroup]="transferDataForm" class="transfer-form">
+            <div class="transfer-form-fields">
+              <mat-form-field>
+                <mat-label>CPF do destinatário</mat-label>
+                <input autofocus matInput placeholder="Digite o CPF" formControlName="receiverId" required
+                  inputmode="numeric" pattern="[0-9]*" mask="000.000.000-00" />
+                <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('required')">Informe o CPF</mat-error>
+                <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('pattern')">CPF inválido</mat-error>
+                <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('notFound')">Usuário não
+                  encontrado</mat-error>
+                <mat-error *ngIf="transferDataForm.get('receiverId')?.hasError('selfTransfer')">Não é possível
+                  transferir para si mesmo</mat-error>
+              </mat-form-field>
 
-            <mat-form-field floatLabel="always">
-              <mat-label>Valor</mat-label>
-              <input
-                matInput
-                type="number"
-                formControlName="amount"
-                required
-                #amountInput
-                (focus)="amountInput.select()"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-              <!-- <span matTextSuffix>.00</span> -->
-              <mat-error *ngIf="transferDataForm.get('amount')?.hasError('min')">
-                Valor mínimo para transferência é R$ 1,00
-              </mat-error>
-              <mat-error *ngIf="transferDataForm.get('amount')?.hasError('maxAmountExceeded')">
-                Saldo insuficiente para realizar a transferência.
-              </mat-error>
-            </mat-form-field>
+              <mat-form-field floatLabel="always">
+                <mat-label>Valor</mat-label>
+                <input matInput type="number" formControlName="amount" required #amountInput
+                  (focus)="amountInput.select()" />
+                <span matTextPrefix>R$&nbsp;</span>
+                <mat-error *ngIf="transferDataForm.get('amount')?.hasError('min')">
+                  Valor mínimo para transferência é R$ 1,00
+                </mat-error>
+                <mat-error *ngIf="transferDataForm.get('amount')?.hasError('maxAmountExceeded')">
+                  Saldo insuficiente para realizar a transferência.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="actions">
+              <button type="button" mat-button (click)="goHome()">Cancelar</button>
+              <button type="submit" mat-flat-button matStepperNext
+                [disabled]="transferDataForm.invalid">Avançar</button>
+            </div>
+          </form>
+        </div>
+      </mat-step>
+
+      <mat-step state="review">
+        <div class="step">
+          <h2>Revisar Transferência</h2>
+
+          <div class="review-details">
+            <p><strong>CPF do destinatário:</strong> {{ receiver?.cpf | cpf }}</p>
+            <p><strong>Nome do destinatário:</strong> {{ receiver?.name }}</p>
+            <p><strong>Valor da transferência:</strong> R$ {{ transferDataForm.get('amount')?.value | number:'1.2-2' }}
+            </p>
           </div>
 
           <div class="actions">
-            <button type="button" mat-button (click)="goHome()">Cancelar</button>
-            <button type="submit" mat-flat-button matStepperNext [disabled]="transferDataForm.invalid">Avançar</button>
+            <button mat-button matStepperPrevious>Voltar</button>
+            <button mat-flat-button matStepperNext>Transferir</button>
           </div>
-        </form>
-      </div>
-    </mat-step>
-
-    <mat-step state="review">
-      <div class="step">
-        <h2>Revisar Transferência</h2>
-
-        <div class="review-details">
-          <p><strong>CPF do destinatário:</strong> {{ receiver?.cpf | cpf }}</p>
-          <p><strong>Nome do destinatário:</strong> {{ receiver?.name }}</p>
-          <p><strong>Valor da transferência:</strong> R$ {{ transferDataForm.get('amount')?.value | number:'1.2-2' }}
-          </p>
         </div>
+      </mat-step>
 
-        <div class="actions">
-          <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-flat-button matStepperNext>Transferir</button>
+      <mat-step state="success">
+        <div class="step">
+          <h2>Transferência realizada com sucesso!</h2>
+          <div class="actions">
+            <button mat-button (click)="stepper.reset()">Realizar outra transferência</button>
+            <button mat-flat-button (click)="goHome()">Ir para página inicial</button>
+          </div>
         </div>
-      </div>
-    </mat-step>
+      </mat-step>
 
-    <mat-step state="success">
-      <div class="step">
-        <h2>Transferência realizada com sucesso!</h2>
-        <div class="actions">
-          <button mat-button (click)="stepper.reset()">Realizar outra transferência</button>
-          <button mat-flat-button (click)="goHome()">Ir para página inicial</button>
-        </div>
-      </div>
-    </mat-step>
-
-    <ng-template matStepperIcon="data">
-      <mat-icon>person</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="review">
-      <mat-icon>checklist</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="success">
-      <mat-icon>price_check</mat-icon>
-    </ng-template>
-  </mat-stepper></div>
+      <ng-template matStepperIcon="data">
+        <mat-icon>person</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="review">
+        <mat-icon>checklist</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="success">
+        <mat-icon>price_check</mat-icon>
+      </ng-template>
+    </mat-stepper></div>
 
 </div>

@@ -48,7 +48,7 @@ input[type="number"] {
 .step {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   height: 100%;
 }
 
@@ -64,3 +64,18 @@ input[type="number"] {
   background-color: transparent;
 }
 
+.transfer-data-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  p {
+    font-size: 14px;
+    color: #374151;
+  }
+
+  span {
+    font-weight: 600;
+    color: #111827;
+  }
+}

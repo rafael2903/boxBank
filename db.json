@@ -22,7 +22,7 @@
       "email": "daniel@example.com",
       "name": "Daniel Caldas",
       "password": "senha123",
-      "amount": 133682
+      "amount": 135904.222
     },
     {
       "id": "5d07",
@@ -30,7 +30,7 @@
       "email": "j6se@example.com",
       "name": "Jo4é Soares",
       "password": "senha123",
-      "amount": 28136.2
+      "amount": 25913.978
     }
   ],
   "transactions": [
@@ -180,6 +180,13 @@
       "receiverId": "3",
       "value": 122,
       "date": "2025-07-30T03:06:31.803Z"
+    },
+    {
+      "id": "381b",
+      "senderId": "5d07",
+      "receiverId": "3",
+      "value": 2222.222,
+      "date": "2025-07-30T03:38:05.380Z"
     }
   ]
 }

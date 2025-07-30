@@ -9,13 +9,7 @@
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        [(ngModel)]="email"
-        required
-      />
+      <input type="email" id="email" name="email" [(ngModel)]="email" required />
     </div>
 
     <div class="form-group">
@@ -25,24 +19,12 @@
 
     <div class="form-group">
       <label for="senha">Senha</label>
-      <input
-        type="password"
-        id="senha"
-        name="senha"
-        [(ngModel)]="senha"
-        required
-      />
+      <input type="password" id="senha" name="senha" [(ngModel)]="senha" required />
     </div>
 
     <div class="form-group">
       <label for="confirmarSenha">Confirmar Senha</label>
-      <input
-        type="password"
-        id="confirmarSenha"
-        name="confirmarSenha"
-        [(ngModel)]="confirmarSenha"
-        required
-      />
+      <input type="password" id="confirmarSenha" name="confirmarSenha" [(ngModel)]="confirmarSenha" required />
     </div>
 
     <div *ngIf="mensagemSucesso" class="mensagem sucesso">
