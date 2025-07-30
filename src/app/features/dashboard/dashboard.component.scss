@@ -1,54 +1,115 @@
-.container {
+$primary-color: #3f51b5;
+
+.dashboard-container {
   display: flex;
-  position: relative;
-  height: 100%;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  padding: 24px;
+  gap: 32px;
+  height: 100%;
 }
 
-.top-bar{
-  position: absolute;
-  top: 8%;
-  right: 30px;
-}
-
-h2 {
-  margin-bottom: 16px;
-}
-
-p {
-  margin: 4px 0;
-  font-size: 18px;
-}
-
-div:last-child {
+.dashboard-header {
+  width: 100%;
+  max-width: 600px;
   display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.amount{
-  display: flex;
+  justify-content: space-between;
   align-items: center;
-  width: 300px
+
+  h2 {
+    margin: 0;
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #212121;
+    letter-spacing: -0.5px;
+  }
+
+  .logout-button {
+    color: #f44336;
+  }
 }
 
-.acoes-bancarias {
-  display: flex;
-  flex-wrap: wrap;
+.account-widget {
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  .account-details {
+    display: flex;
+    gap: 24px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 16px;
+  }
+
+  .balance {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      margin: 0;
+      font-size: 2.25rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .hidden-balance {
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    gap: 16px;
+    padding: 16px !important;
+
+    button {
+      flex: 1;
+      padding: 12px 0;
+      font-size: 1rem;
+    }
+  }
+}
+
+.services-section {
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+
+  h4 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #424242;
+  }
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  justify-content: center;
-  margin-top: 32px;
 
-  button {
-    border-radius: 8px;
+  .service-button {
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
     height: 60px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+    transition: all 0.2s ease-out;
 
-  mat-icon {
-    color: #3f51b5;
+    &:hover {
+      transform: translateY(-2px);
+      background-color: rgba(0, 0, 0, 0.02);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    }
   }
+}
+
+.help-section {
+  margin-top: 24px;
 }

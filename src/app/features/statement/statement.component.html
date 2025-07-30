@@ -1,38 +1,44 @@
 <mat-card-title>Extrato Bancário</mat-card-title>
-<table
-  mat-table
-  matSort
-  [dataSource]="dataSource"
-  class="mat-elevation-z2"
-  (matSortChange)="announceSortChange($event)"
->
-  <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.date | date : "dd/MM/yyyy HH:mm" }}
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef>Descrição</th>
-    <td mat-cell *matCellDef="let element">
-      <span *ngIf="element.direction === 'incoming'">
-        Transferência recebida de <strong>{{ element.counterparty }}</strong>
-      </span>
-      <span *ngIf="element.direction === 'outgoing'">
-        Transferência para <strong>{{ element.counterparty }}</strong>
-      </span>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="amount">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
-    <td mat-cell *matCellDef="let element" [ngClass]="element.direction">
-      {{ element.direction === "incoming" ? "+" : "-" }}
-      {{ element.amount | currency : "BRL" }}
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+<section class="example-container mat-elevation-z8" tabindex="0">
+  <table
+    mat-table
+    matSort
+    [dataSource]="dataSource"
+    class="mat-elevation-z2"
+    (matSortChange)="announceSortChange($event)"
+  >
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.date | date : "dd/MM/yyyy HH:mm" }}
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Descrição</th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="element.direction === 'incoming'">
+          Transferência recebida de <strong>{{ element.counterparty }}</strong>
+        </span>
+        <span *ngIf="element.direction === 'outgoing'">
+          Transferência para <strong>{{ element.counterparty }}</strong>
+        </span>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
+      <td mat-cell *matCellDef="let element" [ngClass]="element.direction">
+        {{ element.direction === "incoming" ? "+" : "-" }}
+        {{ element.amount | currency : "BRL" }}
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[10]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</section>

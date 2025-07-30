@@ -1,5 +1,6 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { Observable, combineLatest, of } from 'rxjs';
+import { Component, inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../../core/auth/auth.service';
 import { TransactionsService } from '../../shared/services/transactions.service';
@@ -21,10 +22,11 @@ export interface StatementEntry {
   templateUrl: './statement.component.html',
   styleUrls: ['./statement.component.scss'],
 })
-export class StatementComponent implements OnInit {
+export class StatementComponent implements OnInit, AfterViewInit  {
   displayedColumns: string[] = ['date', 'description', 'amount'];
   private _liveAnnouncer = inject(LiveAnnouncer);
   dataSource = new MatTableDataSource<StatementEntry>([]);
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private authService: AuthService,
@@ -46,7 +48,6 @@ export class StatementComponent implements OnInit {
         return allTransactions
           .filter(tx => tx.senderId === currentUser.id || tx.receiverId === currentUser.id)
           .map((tx): StatementEntry => {
-            // ... mapping logic from before
             const isIncoming = tx.receiverId === currentUser.id;
             const direction = isIncoming ? 'incoming' : 'outgoing';
             const counterpartyId = isIncoming ? tx.senderId : tx.receiverId;
@@ -62,20 +63,15 @@ export class StatementComponent implements OnInit {
           .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       })
     ).subscribe(processedEntries => {
-      // Update the dataSource's data property
       this.dataSource.data = processedEntries;
      
     });
   }
     ngAfterViewInit() {
-    // Connect the sort directive to the data source
-    this.dataSource.sort = this.sort;
-  }
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    }
    announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
