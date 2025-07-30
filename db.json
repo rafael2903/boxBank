@@ -31,6 +31,22 @@
       "name": "Jo4é Soares",
       "password": "senha123",
       "amount": 25913.978
+    },
+    {
+      "id": "",
+      "cpf": "05100600489",
+      "email": "robertointeraminense@gmail.com",
+      "name": "jose",
+      "password": "123",
+      "amount": 1000
+    },
+    {
+      "id": "mb53a5bop0ajc67wbe3ii",
+      "cpf": "05100600489",
+      "email": "robertointeraminense@gmail.com",
+      "name": "jose",
+      "password": "a123",
+      "amount": 1000
     }
   ],
   "transactions": [
