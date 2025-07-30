@@ -23,8 +23,7 @@ export class AuthService {
       map(users => {
         const user = users.find(u => u.email === email && u.password === password);
         if (user) {
-          this.currentUserSubject.next(user);
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.updateUser(user);
           return user;
         }
         return null;
@@ -44,5 +43,10 @@ export class AuthService {
 
   getCurrentUser(): User | null {
     return this.currentUserSubject.value;
+  }
+
+  updateUser(user: User){
+    this.currentUserSubject.next(user);
+    localStorage.setItem('currentUser', JSON.stringify(user));
   }
 }

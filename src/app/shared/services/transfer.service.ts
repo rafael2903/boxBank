@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { concat, forkJoin, map, Observable } from 'rxjs';
+import { concat, forkJoin, map, Observable, switchMap } from 'rxjs';
 import { User } from '../models/user.model';
 import { TransactionsService } from './transactions.service';
 import { UsersService } from './users.service';
@@ -24,16 +24,25 @@ export class TransferService {
     ]).pipe(
       map(([sender, receiver]) => {
         this.validateTransfer(sender, receiver, amount);
-
-        this.createTransaction(sender, receiver, amount).subscribe(() => {
-          sender.amount -= amount;
-          receiver.amount += amount;
-          concat(
-            this.usersService.update(sender),
-            this.usersService.update(receiver)
-          ).subscribe();
-        });
-      })
+        return { sender, receiver };
+      }),
+    switchMap(({ sender, receiver }) =>
+        this.createTransaction(sender, receiver, amount).pipe(
+          map(() => {
+            sender.amount -= amount;
+            receiver.amount += amount;
+            return { sender, receiver };
+          })
+        )
+      ),
+    switchMap(({ sender, receiver }) =>
+        concat(
+          this.usersService.update(sender),
+          this.usersService.update(receiver)
+        ).pipe(
+          map(() => undefined)
+        )
+      )
     );
   }
 

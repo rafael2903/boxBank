@@ -7,6 +7,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { StatementComponent } from './statement.component';
 import {MatSortModule} from '@angular/material/sort';
+import { MatPaginatorModule} from '@angular/material/paginator';
+
 @NgModule({
   declarations: [StatementComponent],
   imports: [
@@ -15,7 +17,8 @@ import {MatSortModule} from '@angular/material/sort';
     MatCardModule,
     MatProgressSpinnerModule, 
     MatIconModule,
-    MatSortModule             
+    MatSortModule,
+    MatPaginatorModule
   ],
 })
 export class StatementModule {}

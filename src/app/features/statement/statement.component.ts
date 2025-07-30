@@ -1,5 +1,6 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import {  combineLatest } from 'rxjs';
+import { Component, inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../../core/auth/auth.service';
 import { TransactionsService } from '../../shared/services/transactions.service';
@@ -21,10 +22,11 @@ export interface StatementEntry {
   templateUrl: './statement.component.html',
   styleUrls: ['./statement.component.scss'],
 })
-export class StatementComponent implements OnInit {
+export class StatementComponent implements OnInit, AfterViewInit  {
   displayedColumns: string[] = ['date', 'description', 'amount'];
   private _liveAnnouncer = inject(LiveAnnouncer);
   dataSource = new MatTableDataSource<StatementEntry>([]);
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private authService: AuthService,
@@ -66,8 +68,9 @@ export class StatementComponent implements OnInit {
     });
   }
     ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    }
    announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);

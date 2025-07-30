@@ -27,19 +27,9 @@ export class DashboardComponent {
     this.ocultarSaldo = !this.ocultarSaldo;
   }
   verExtrato() {
-    console.log('vendo extrato');
     this.router.navigate(['/extrato']);
   }
-
   transferir() {
-    console.log('transferir');
     this.router.navigate(['/transfer']);
-  }
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
-  goBack(): void {
-    this.location.back();
   }
 }
