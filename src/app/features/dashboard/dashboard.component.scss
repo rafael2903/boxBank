@@ -1,0 +1,94 @@
+$primary-color: #3f51b5;
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.account-widget {
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  .account-details {
+    display: flex;
+    gap: 24px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 16px;
+  }
+
+  .balance {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      margin: 0;
+      font-size: 2.25rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .hidden-balance {
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    gap: 16px;
+    padding: 16px !important;
+
+    button {
+      flex: 1;
+      padding: 12px 0;
+      font-size: 1rem;
+    }
+  }
+}
+
+.services-section {
+  width: 100%;
+  text-align: left;
+  max-width: 800px;
+  h4 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #424242;
+  }
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  .service-button {
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 60px;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      transform: translateY(-2px);
+      background-color: rgba(0, 0, 0, 0.02);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+.help-section {
+  margin-top: 24px;
+}

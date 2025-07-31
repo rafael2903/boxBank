@@ -1,3 +1,13 @@
+Projeto simula um Sistema bancário, trabalho de Angular em Grupo para ADA.
+
+Integrantes do Grupo 3:
+- Daniel Lourenço da Costa Caldas
+- Tadeu Juliace Lopes Fontoura
+- José Roberto Interaminense Soares
+- Rafael Rodrigues 
+- Carlos Adriano Santana Silva
+
+
 # AdaToDo
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.0.

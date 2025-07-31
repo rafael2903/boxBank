@@ -1,0 +1,76 @@
+<ng-container *ngIf="currentUser$ | async as user">
+  <div class="dashboard-container">
+    <app-header [headerTitle]="`Bem vindo, ${user.name}!`"></app-header>
+
+    <mat-card class="account-widget">
+      <mat-card-content>
+        <div class="account-details">
+          <span>Agência: {{ agencia }}</span>
+          <span>Conta: {{ conta }}</span>
+        </div>
+
+        <div class="balance">
+          <h3>
+            <span *ngIf="!ocultarSaldo">{{
+              user.amount | currency : "BRL"
+              }}</span>
+            <span *ngIf="ocultarSaldo" class="hidden-balance">R$ •••••••,••</span>
+          </h3>
+          <button mat-icon-button (click)="toggleOcultarSaldo()"
+            matTooltip="{{ ocultarSaldo ? 'Mostrar saldo' : 'Ocultar saldo' }}">
+            <mat-icon>{{
+              ocultarSaldo ? "visibility" : "visibility_off"
+              }}</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" (click)="verExtrato()">
+          <mat-icon>receipt_long</mat-icon>
+          Extrato
+        </button>
+        <button mat-flat-button color="accent" (click)="transferir()">
+          <mat-icon>sync_alt</mat-icon>
+          Transferir
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <section class="services-section">
+      <h4>O que deseja fazer?</h4>
+      <div class="services-grid">
+        <button mat-button class="service-button">
+          <mat-icon>currency_exchange</mat-icon>
+          Pix
+        </button>
+        <button mat-button class="service-button">
+          <mat-icon>payments</mat-icon>
+          Pagamentos
+        </button>
+        <button mat-button class="service-button">
+          <mat-icon>credit_card</mat-icon>
+          Cartão
+        </button>
+        <button mat-button class="service-button">
+          <mat-icon>savings</mat-icon>
+          Cofrinho
+        </button>
+        <button mat-button class="service-button">
+          <mat-icon>account_balance</mat-icon>
+          Empréstimo
+        </button>
+        <button mat-button class="service-button">
+          <mat-icon>trending_up</mat-icon>
+          Investimentos
+        </button>
+      </div>
+    </section>
+
+    <section class="help-section">
+      <button mat-button>
+        <mat-icon>help_outline</mat-icon>
+        Ajuda
+      </button>
+    </section>
+  </div>
+</ng-container>

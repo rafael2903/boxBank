@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  width: 100%;
+}
+.dashboard-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #212121;
+    letter-spacing: -0.5px;
+  }
+
+  .logout-button {
+    color: #f44336;
+  }
+}
